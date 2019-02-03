@@ -1,92 +1,152 @@
 <!DOCTYPE html>
 <html>
-  <script type="text/javascript" src="api.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <script type="text/javascript">
-      //console.log("hi2");
-      //console.log(document.getElementById("final"));
-      var api = GeotabApi(function (authenticationCallback) {
-      // Handling getting credentials. Deals with these cases:
-      //      a) No credentials yet (first page load)
-      //      b) The credentials have expired (password changed or server moved)
-      //      c) "api.forget()" has been called
-      //
-      // Show the dialog now & set up listener to callback with credentials
-      //
-      console.log("init");
-      console.log(document.getElementById("final"));
-      console.log(authenticationCallback);
-      document.getElementById("final").addEventListener("click", function () {
-           //event.preventDefault();
-           var
-           server = document.getElementById("server").value,
-           userName = document.getElementById("username").value,
-           password = document.getElementById("password").value,
-           database = document.getElementById("database").value;
-          console.log(server);
+  <!-- <script type="text/javascript" src="api.js" crossorigin="anonymous"></script> -->
 
-           authenticationCallback(server, database, userName, password,
-               function (errorString) {
-               alert(errorString);
-           });
-      }, false);
-      console.log("leave");
-    });
-
-  </script>
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
      <link href="style.css" rel="stylesheet" type="text/css" />
+     <style>
 
+       body{
+         background-color:grey;
+       }
+
+       .label-text1 {
+
+         width: 70vw;
+         padding: 2.125rem  0 0.5rem;
+         text-transform: uppercase;
+         color: black;
+         font-size: 1.125rem;
+         font-weight: bold;
+         display: inline-block;
+       }
+
+       .label-text2 {
+
+         width: 70vw;
+         padding: 2.125rem  0 0.5rem;
+         text-transform: uppercase;
+         color: black;
+         font-size: 1.125rem;
+         font-weight: bold;
+         display: inline-block;
+       }
+
+       .label-text3 {
+
+         width: 70vw;
+         padding: 2.125rem  0 0.5rem;
+         text-transform: uppercase;
+         color: black;
+         font-size: 1.125rem;
+         font-weight: bold;
+         display: inline-block;
+       }
+
+       .label-text4 {
+
+         width: 70vw;
+         padding: 2.125rem  0 0.5rem;
+         text-transform: uppercase;
+         color: black;
+         font-size: 1.125rem;
+         font-weight: bold;
+         display: inline-block
+       }
+
+       input{
+         font-size: 1.25rem;
+         width: 80%;
+       }
+
+       input[type=submit] {
+         background-color: #4CAF50;
+         color: black;
+         font-size : 0.8rem;
+         font-weight: bold;
+
+         border: none;
+         border-radius: 6px;
+         cursor: pointer;
+         float: centre;
+       }
+
+       a{
+         align-content:center;
+       }
+
+
+
+
+     </style>
   </head>
   <body>
     <form>
-
-      <input id="server" type="text" required autofocus />
       <label for="input-1">
-        <span class="label-text">Server</span>
-        <span class="nav-dot"></span>
+        <span class="label-text1">Server: </span>
+      </label>
+      <input id="server" type="text" required autofocus />
 
+      <label for="input-2">
+        <br><span class="label-text2">Database: </span>
       </label>
       <input id="database" type="text"  required />
-      <label for="input-2">
-        <span class="label-text">Database</span>
-        <span class="nav-dot"></span>
+
+      <label for="input-3">
+        <br><span class="label-text3">Username: </span>
       </label>
       <input id="username" type="text"  required />
-      <label for="input-3">
-        <span class="label-text">Username</span>
-        <span class="nav-dot"></span>
+
+      <label for="input-4">
+        <br><span class="label-text4">Password: </span>
       </label>
       <input id="password" type="password" required/>
-      <label for="input-4">
-        <span class="label-text">Password</span>
-        <span class="nav-dot"></span>
-      </label>
 
-      <label type="submit" id="final">Submit</label>
+      <div class="row">
+        <a href="page2.html" onclick="myFunction();"> Submit <a/>
+        <br>
+         <a href="page2.html">Click</a>
+      <br>
+
+      </div>
+    </form>
       <p class="tip">Press Tab</p>
 
-      <select name="Cars">
+      <!-- <select name="Cars">
         <option value ="LS_Darwin slave">LS_Darwin slave</option>
         <option value ="Spider Car 9">Spider Car 9</option>
         <option value ="Wolf GO8">Wolf GO8</option>
         <option value ="Wolf GO9 ">Wolf GO9</option>
 
-      </select>
-
-    </form>
+      </select> -->
 
 
-    <script type="text/javascript">
-    api.call("GetVersion", {});
+</body>
+
+
+    <script type="text/javascript" crossorigin="anonymous">
+
+        function myFunction(){
+             var formData = new FormData();
+             server = document.getElementById("server").value,
+             userName = document.getElementById("username").value,
+             password = document.getElementById("password").value,
+             database = document.getElementById("database").value;
+             formData.append("server", server);
+             formData.append("username",userName);
+             formData.append("password",password);
+             formData.append("database",database);
+
+            // fetch('http://127.0.0.1:5000/firstnum/123', {
+            //       method: 'POST',
+            //       body: formData
+            //   })
+}
     </script>
 
-  </body>
+
 </html>
