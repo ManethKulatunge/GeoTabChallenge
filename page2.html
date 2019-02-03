@@ -3,15 +3,17 @@
 
 <body>
 
-<<select name="Cars">
-  <option value ="LS_Darwin slave">LS_Darwin slave</option>
-  <option value ="Spider Car 9">Spider Car 9</option>
-  <option value ="Wolf GO8">Wolf GO8</option>
-  <option value ="Wolf GO9 ">Wolf GO9</option>
-
-</select> -->
 
 <form action="/action_page.php">
+
+  <select name="Cars" onchange="myFunction();false">
+    <option value ="LS_Darwin slave">LS_Darwin slave</option>
+    <option value ="Spider Car 9">Spider Car 9</option>
+    <option value ="Wolf GO8">Wolf GO8</option>
+    <option value ="Wolf GO9 ">Wolf GO9</option>
+
+  </select>
+
       From:
       <input type="date" name="from">
 
@@ -19,8 +21,28 @@
       <br>
       To:
       <input type="date" name="To">
-      <br><input type="submit" >
+      <br><input type="submit" onclick="myFunction();false" >
     </form>
+
+    <script type="text/javascript" crossorigin="anonymous">
+
+        function myFunction(){
+             var formData = new FormData();
+             car = document.getElementById("Cars").value,
+             from = document.getElementById("from").value,
+             to = document.getElementById("To").value,
+             formData.append("device_id", car);
+             formData.append("from_date",from);
+             formData.append("to_date",to);
+
+
+             return fetch('http://localhost:5009/geotab/function1', {
+                  method: 'POST',
+                  body: formData;
+               })
+               .then(response=>response.json())
+}
+    </script>
 
   </body>
   </html>
