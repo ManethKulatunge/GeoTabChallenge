@@ -116,13 +116,7 @@
     </form>
       <p class="tip">Press Tab</p>
 
-      <!-- <select name="Cars">
-        <option value ="LS_Darwin slave">LS_Darwin slave</option>
-        <option value ="Spider Car 9">Spider Car 9</option>
-        <option value ="Wolf GO8">Wolf GO8</option>
-        <option value ="Wolf GO9 ">Wolf GO9</option>
 
-      </select> -->
 
 
 </body>
@@ -141,10 +135,10 @@
              formData.append("password",password);
              formData.append("database",database);
 
-            // fetch('http://127.0.0.1:5000/firstnum/123', {
-            //       method: 'POST',
-            //       body: formData
-            //   })
+            fetch('http://0.0.0.0:5000//geotab/authenticate', {
+                  method: 'POST',
+                  body: formData;
+               })
 }
     </script>
 
