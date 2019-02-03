@@ -2,9 +2,12 @@ from flask import Flask,request,jsonify
 from authentication import authenticate
 from function1 import function1
 from function2 import function2
-
-
+from flask_cors import CORS, cross_origin
+import logging
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 
 @app.route('/geotab/authenticate',methods=['GET','POST'])
@@ -19,7 +22,9 @@ def authenticate_client():
     return jsonify({'result':'success'})
 
 @app.route('/geotab/function1',methods=['GET','POST'])
+@cross_origin()
 def function1_launcher():
+    logging.debug('Yo')
     req=request.json
     device_id=req['device_id']
     from_date=req['from_date']

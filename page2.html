@@ -4,41 +4,77 @@
 <body>
 
 
-<form action="/action_page.php">
+<form>
 
-  <select name="Cars" onchange="myFunction();false">
-    <option value ="LS_Darwin slave">LS_Darwin slave</option>
-    <option value ="Spider Car 9">Spider Car 9</option>
-    <option value ="Wolf GO8">Wolf GO8</option>
-    <option value ="Wolf GO9 ">Wolf GO9</option>
+  <select id="Cars">
+    <option value ="b1">LS_Darwin slave</option>
+    <option value ="b2">Spider Car 9</option>
+    <option value ="b3">Wolf GO8</option>
+    <option value ="b4">Wolf GO9</option>
 
   </select>
 
       From:
-      <input type="date" name="from">
+      <input type="date" id="from">
 
 
       <br>
       To:
-      <input type="date" name="To">
-      <br><input type="submit" onclick="myFunction();false" >
+      <input type="date" id ="To">
+      <br><input type="button" onclick="myFunction();" >
+
+  <select id="Route" onchange="myFunction2();false" >
+      <option value ="0">Route 1</option>
+      <option value ="1">Route 2</option>
+      <option value ="2">Route 3</option>
+      <option value ="3">Route 4</option>
+      <option value ="4">Route 5</option>
+      <option value ="5">Route 6</option>
+      <option value ="6">Route 7</option>
+      <option value ="7">Route 8</option>
+      <option value ="8">Route 9</option>
+      <option value ="9">Route 10</option>
+
+  </select>
+
+  <a href="geomap_routes.html">Click</a>
+
+
     </form>
 
     <script type="text/javascript" crossorigin="anonymous">
 
         function myFunction(){
+          console.log("myFunction");
              var formData = new FormData();
-             car = document.getElementById("Cars").value,
-             from = document.getElementById("from").value,
-             to = document.getElementById("To").value,
+             car = document.getElementById("Cars").value;
+             from = document.getElementById("from").value;
+             to = document.getElementById("To").value;
              formData.append("device_id", car);
              formData.append("from_date",from);
              formData.append("to_date",to);
-
+             console.log(car);
+             console.log(from);
+             console.log(to);
 
              return fetch('http://localhost:5009/geotab/function1', {
                   method: 'POST',
-                  body: formData;
+                  body: formData
+               })
+               .then(response=>JSON.stringify(response));
+        }
+
+
+
+        function myFunction2(){
+             var formData = new FormData();
+             route = document.getElementById("Route").value,
+             formData.append("num", route);
+
+
+             return fetch('http://localhost:5009/geotab/function2', {
+                  method: 'POST',
+                  body: formData
                })
                .then(response=>response.json())
 }
