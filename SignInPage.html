@@ -135,10 +135,11 @@
              formData.append("password",password);
              formData.append("database",database);
 
-            fetch('http://0.0.0.0:5000//geotab/authenticate', {
+             return fetch('http://localhost:5000/geotab/authenticate', {
                   method: 'POST',
                   body: formData;
                })
+               .then(response=>response.json())
 }
     </script>
 
